@@ -16,7 +16,7 @@ CLIENT_ID = os.getenv("CLIENT_ID")
 USER_NAME = os.getenv("USER_NAME")
 PASSWORD = os.getenv("PASSWORD")
 
-
+# Keywords to search for in the posts
 KEYWORDS = [
     "depressed",
     "depression help",
@@ -33,6 +33,7 @@ KEYWORDS = [
     "panic attack",
 ]
 
+# Subreddits to extract data from
 sub_reddits = [
     "mentalhealth",
     "MentalHealthSupport",
@@ -122,7 +123,6 @@ def save_to_csv(data, filename):
 
 # Main function
 def main():
-    subreddit_name = "mentalhealth"  # Change this to the subreddit you want to scrape
     output_file = "reddit_posts.csv"
 
     for subreddit_name in sub_reddits:

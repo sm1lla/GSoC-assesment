@@ -1,6 +1,7 @@
 # GSoC-assesment
 
 This is a submission for the GSoC Candidate Assessment for the Task [AI-Powered Behavioral Analysis for Suicide Prevention, Substance Use, and Mental Health Crisis Detection with Longitudinal Geospatial Crisis Trend Analysis](https://humanai.foundation/gsoc/2025/proposal_ISSR3.html) from HumanAI.
+The deliverables for task 1 are `data_extraction.py` and `reddit_posts.csv`, for task 2 `sentiment_analysis.py`, `data_with_sentiment.csv` and `Data Exploration.ipynb` and for task 3 `extract_location.py`, `data_with_location.csv` and `Data Exploration.ipynb`.
 
 These are the individual tasks:
 

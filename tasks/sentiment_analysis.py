@@ -22,24 +22,6 @@ def classify_sentiment(text):
         return "Neutral"
 
 
-# def calculate_embeddings(texts):
-#     tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")
-
-#     # Tokenize input
-#     tokenized_texts = tokenizer(
-#         texts, padding=True, truncation=True, return_tensors="pt"
-#     )
-
-#     # Load pre-trained BERT model
-#     model = BertModel.from_pretrained("bert-base-uncased")
-
-#     # Get embeddings
-#     with torch.no_grad():
-#         outputs = model(**tokenized_texts)
-#         text_embeddings = outputs.last_hidden_state[:, 0, :]  # CLS token representation
-#     return text_embeddings
-
-
 def preprocess_text(text):
     # Remove special characters and emojis
     text = re.sub(r"[^a-zA-Z0-9\s]", "", text)
@@ -69,14 +51,16 @@ def compare_embeddings(text):
         "i need help",
     ]
 
+    # Calculate embeddings for risk level examples
     high_risk_embeddings = calculate_embeddings(high_risk_level_sentences)
     medium_risk_embeddings = calculate_embeddings(medium_risk_level_sentences)
 
-    # Calculate embeddings for input text
+    # Calculate embeddings for input text sentence by sentence
     sentences = sent_tokenize(text)
     sentences = [preprocess_text(sentence) for sentence in sentences]
     text_embeddings = calculate_embeddings(sentences)
 
+    # Calculate similarity scores
     high_risk_similarity_matrix = cosine_similarity(
         text_embeddings, high_risk_embeddings
     )
@@ -84,9 +68,11 @@ def compare_embeddings(text):
         text_embeddings, medium_risk_embeddings
     )
 
+    # Find maximum similarity scores
     high_risk_similarities = high_risk_similarity_matrix.max(axis=1)
     medium_risk_similarities = medium_risk_similarity_matrix.max(axis=1)
 
+    # Classify risk level
     if high_risk_similarities.max() > 0.5:
         return "High"
     elif medium_risk_similarities.max() > 0.5:
@@ -102,6 +88,7 @@ def main():
     # Classify sentiment
     data["sentiment"] = data["preprocessed_content"].apply(classify_sentiment)
 
+    # Classify risk levels
     tqdm.pandas(desc="Processing risk levels")
     data["risk_level"] = data["content"].progress_apply(compare_embeddings)
 
