@@ -78,7 +78,7 @@ def extract_posts(subreddit_name, keywords):
     subreddit = reddit.subreddit(subreddit_name)
     extracted_data = []
 
-    for post in subreddit.top(limit=None):
+    for post in subreddit.new(limit=300):
         if contains_keywords(post.title, keywords) or contains_keywords(
             post.selftext, keywords
         ):
