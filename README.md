@@ -28,7 +28,7 @@ High-Risk: Posts with direct crisis language (e.g., “I don’t want to be here
 Moderate Concern: Seeking help, discussing struggles (e.g., “I feel lost lately”)
 Low Concern: General discussions about mental health
 
-Deliverable:
+📌 Deliverable:
 - A script that classifies posts based on sentiment and risk level.
 - A table or plot showing the distribution of posts by sentiment and risk category.
 
@@ -41,6 +41,6 @@ NLP-based place recognition (e.g., "Need help in Austin" → Maps to Austin, TX)
 Generate a heatmap of crisis-related posts using Folium or Plotly.
 Display top 5 locations with the highest crisis discussions.
 
-Deliverable:
+📌 Deliverable:
 - A Python script that geocodes posts and generates a heatmap of crisis discussions.
 - A visualization of regional distress patterns in the dataset.- 
